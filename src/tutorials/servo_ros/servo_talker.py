@@ -3,11 +3,12 @@
 # importar librerias (rospy)
 import rospy
 import time
+import RPi.GPIO as GPIO
 
-from std_msgs.msg import Float64				#  elimina o anade el tipo de mensaje 
+from std_msgs.msg import Float32				#  elimina o anade el tipo de mensaje
 
 def talker():		# definir funciones
-    pub = rospy.Publisher('move_Servo', Float64, queue_size=10)	# nombre del topic
+    pub = rospy.Publisher('move_servo', Float32, queue_size=10)	# nombre del topic
 								# queue_size: limita la cantidad de mensajes si algun suscriptor no recibe suficientemente rapido
     rospy.init_node('servo_talker', anonymous=True)		# nombre del nodo
     rate = rospy.Rate(5) 					# realiza el bucle a 10Hz
@@ -37,8 +38,8 @@ def talker():		# definir funciones
         pub.publish(2.5)
 	time.sleep(5)
 
-if __name__ == '__main__':
-    try:
-        talker()
-    except rospy.ROSInterruptException:
-        pass
+if __name__=='__main__':
+   try:
+     talker()
+   except rospy.ROSInterruptException:
+     pass

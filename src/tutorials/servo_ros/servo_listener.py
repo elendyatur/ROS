@@ -4,7 +4,7 @@ import rospy
 import RPi.GPIO as GPIO         # importar librerias de GPIO
 import time                     # y tiempo
 
-from std_msgs.msg import Float64
+from std_msgs.msg import Float32
 
 servoPIN = 17                   # GPIO17 (pin11) se llamara servoPIN
 GPIO.setmode(GPIO.BCM)          # nombrar pines segun su nombre y no su numero
@@ -13,9 +13,9 @@ GPIO.setup(servoPIN, GPIO.OUT)  # configurar el pin11 (GPIO17) como salida
 p = GPIO.PWM(servoPIN, 50)      # GPIO 17 for PWM with 50Hz
 p.start(0)                      # Inicializacion
 
-def callback(data):
-    rospy.loginfo("Roger %s", data.data)	# data.data: dato recibido del publisher
-    p.ChangeDutyCycle(data.data)
+def callback(msg):
+    rospy.loginfo("Roger %s", msg.data)	# msg.data: dato recibido del publisher
+    p.ChangeDutyCycle(msg.data)
 
 def listener():
 
@@ -26,7 +26,7 @@ def listener():
     # run simultaneously.
     rospy.init_node('servo_listener', anonymous=True)
 
-    rospy.Subscriber('move_servo', Float64, callback)		# topic
+    rospy.Subscriber('move_servo', Float32, callback)		# topic
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
@@ -34,7 +34,7 @@ def listener():
 if __name__ == '__main__':
     try:
     	listener()
-    except rospy.ROSInterruptException:
+    except rospy.RosInterruptException:
 	p.stop()
 	GPIO.cleanup()
 	pass
