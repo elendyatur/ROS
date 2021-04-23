@@ -22,4 +22,4 @@ if __name__ == '__main__':
         IR_listener()
     except rospy.ROSInterruptException:
         GPIO.cleanup()
-        pass        
+        pass
