@@ -1,22 +1,20 @@
 import time
 import RPi.GPIO as GPIO
 
-# Usamos la referencia BOARD para los pines GPIO
+# Referencia BOARD para los pines GPIO
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)          # Sin warnings
 
-# Definimos los pines que vamos a usar
+# Pines a utilizar
 GPIO_TRIGGER = 11
 GPIO_ECHO = 13
 
-# Configuramos los pines como entradas y salidas
+# Configuracion de pines
 GPIO.setup(GPIO_TRIGGER,GPIO.OUT)  # Trigger
 GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
 
-# Definimos algunas funciones
-
 def medida():
-  # Esta funcion mide una distancia
+  # Medicion de distancia
   GPIO.output(GPIO_TRIGGER, True)
   time.sleep(0.00001)
   GPIO.output(GPIO_TRIGGER, False)
@@ -36,26 +34,22 @@ def medida():
 
 print ("Medida con sensor de ultrasonidos")
 
-# Ponemos el Trigger en falso (low)
+# Trigger en falso (low)
 GPIO.output(GPIO_TRIGGER, False)
-
-# Metemos el bloque principal en un Try para asi poder
-# comprobar si el usuario presiona Ctrl + C
-# y poder ejecutar una limpieza del GPIO, esto tambien
-# evita el usuario tener que ver muchos mensajes de error
+r
 try:
  while True: # Este bucle se repite siempre
 
-# Lo primero que hago es medir la distancia
+# Se mide la distancia
         distancia = medida()
-# Compruebo si la distancia es menor que 10
-# Si es menor que 10 muestro la distancia por pantalla
-        print ("Distancia: %.1f" % distancia) # Mostramos la distancia por pantalla
-        time.sleep(1) # Esperamos 1 segundo
+# Se comprueba si la distancia es menor que 10
+# Si es menor que 10 se muestra la distancia por pantalla
+        print ("Distancia: %.1f" % distancia) # Se muestra la distancia por pantalla
+        time.sleep(1)
        
 except KeyboardInterrupt: # Si el usuario presiona Crtl + C
 
-  # Limpiamos los pines GPIO y salimos del programa
+  # Limpiar los pines GPIO y salir del programa
   print ("Limpiando GPIO")
   GPIO.cleanup()
   print ("GPIO limpio")
