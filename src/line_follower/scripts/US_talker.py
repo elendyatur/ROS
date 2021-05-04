@@ -14,7 +14,7 @@ GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 def measure():
 	GPIO.output(GPIO_TRIGGER, True)
-	rospy.sleep(0.00001)				# set Trigger after 0.01ms to LOW
+	rospy.sleep(0.00001)				# Set Trigger after 0.01ms to LOW
 	GPIO.output(GPIO_TRIGGER, False)
 	StartTime = time.time()
 
