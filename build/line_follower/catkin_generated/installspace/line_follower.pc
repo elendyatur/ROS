@@ -1,0 +1,8 @@
+prefix=/home/pi/catkin_ws/install
+
+Name: line_follower
+Description: Description of line_follower
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

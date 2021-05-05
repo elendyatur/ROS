@@ -1,0 +1,5 @@
+<launch>
+  <node name="Publicador_1" pkg="line_follower" type="pub1.py" output="screen"/>
+  <node name="Publicador_2" pkg="line_follower" type="pub2.py" output="screen"/>
+  <node name="Subscriptor" pkg="line_follower" type="sub.py" output="screen"/>
+</launch>

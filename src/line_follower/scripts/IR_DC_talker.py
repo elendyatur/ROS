@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import rospy#, time
+import rospy
 from line_follower.msg import dos_sensores_IR
 import RPi.GPIO as GPIO
 
@@ -8,7 +8,7 @@ sensor1 = 7
 sensor2 = 8
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)          # Sin warnings
+GPIO.setwarnings(False)           # Sin warnings
 GPIO.setup(sensor1, GPIO.IN)      # Pin 7 (D0) como entrada de datos a la RPi
 GPIO.setup(sensor2, GPIO.IN)      # Pin 8 (D0) como entrada de datos a la RPi
 
